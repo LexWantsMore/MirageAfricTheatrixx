@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import FeatureImage from "../assets/IMG-20240613-WA0006.jpg";
+import FeatureVideo from "../assets/DSC_9112.MOV (2).mp4";
 
 const Features = () => {
   const features = [
@@ -108,7 +110,7 @@ const Features = () => {
         <div className="flex-1 max-w-xl mx-auto mt-14 xl:mt-0 features-img">
           <div className="relative">
             <img
-              src="src\assets\IMG-20240613-WA0006.jpg"
+              src={FeatureImage}
               className="rounded-lg"
               alt=""
             />
@@ -153,7 +155,8 @@ const Features = () => {
               controls
               autoPlay={true}
             >
-              <source src="src\assets\DSC_9112.MOV (2).mp4" type="video/mp4" />
+              <source src={FeatureVideo} 
+              type="video/mp4" />
             </video>
           </div>
         </div>

@@ -4,6 +4,9 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { CartContext } from "../context/CartContext";
 
+// Import your images
+import speakerImage from '../assets/IMG-20240613-WA0006.jpg';
+
 const BuyTicket = () => {
   const { type } = useParams();
   const navigate = useNavigate();
@@ -111,7 +114,7 @@ const BuyTicket = () => {
       <div className="flex flex-col md:flex-row font-sans">
         <div className="flex-none p-4 w-full md:w-56 relative mb-4 md:mb-0">
           <img
-            src="\src\assets\IMG-20240613-WA0006.jpg"
+            src={speakerImage}
             alt="speaker image"
             className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl rounded-lg"
             loading="lazy"

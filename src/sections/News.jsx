@@ -1,5 +1,9 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
+import NewsImage1 from "../assets/photo_2024-07-08_15-48-16.jpg";
+import AuthorImage from "../assets/photo_2024-07-08_15-48-04.jpg";
+import NewsImage2 from "../assets/IMG-20240613-WA0011.jpg";
+import NewsImage3 from "../assets/IMG-20240613-WA0028.jpg";
 
 const News = () => {
   const navigate = useNavigate();
@@ -23,7 +27,7 @@ const News = () => {
           <div className="news__item group">
             <div className="news__image-container">
               <img
-                src="src/assets/photo_2024-07-08_15-48-16.jpg"
+                src={NewsImage1}
                 alt="News 1"
               />
             </div>
@@ -36,7 +40,7 @@ const News = () => {
               </p>
               <div className="news__author-container">
                 <img
-                  src="src\assets\photo_2024-07-08_15-48-04.jpg"
+                  src={AuthorImage}
                   alt="Author"
                   className="news__author-image"
                 />
@@ -55,7 +59,7 @@ const News = () => {
           </div>
           <div className="news__item group">
             <div className="news__image-container">
-              <img src="src\assets\IMG-20240613-WA0011.jpg" alt="News 2" />
+              <img src={NewsImage2} alt="News 2" />
             </div>
             <div className="news__content">
               <span className="news__category">THEATRE</span>
@@ -66,7 +70,7 @@ const News = () => {
               </p>
               <div className="news__author-container">
                 <img
-                  src="src\assets\photo_2024-07-08_15-48-04.jpg"
+                  src={AuthorImage}
                   alt="Author"
                   className="news__author-image"
                 />
@@ -85,7 +89,7 @@ const News = () => {
           </div>
           <div className="news__item group">
             <div className="news__image-container">
-              <img src="src\assets\IMG-20240613-WA0028.jpg" alt="News 3" />
+              <img src={NewsImage3} alt="News 3" />
             </div>
             <div className="news__content">
               <span className="news__category">HOUSE</span>
@@ -96,7 +100,7 @@ const News = () => {
               </p>
               <div className="news__author-container">
                 <img
-                  src="src\assets\photo_2024-07-08_15-48-04.jpg"
+                  src={AuthorImage}
                   alt="Author"
                   className="news__author-image"
                 />

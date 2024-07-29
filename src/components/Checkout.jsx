@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import axios from "axios";
 
+// Import images
+import mainImage from "../assets/IMG-20240613-WA0016.jpg";
+import vipTicketImage from "../assets/IMG-20240613-WA0007.jpg";
+import regularTicketImage from "../assets/IMG-20240613-WA0005.jpg";
+
 const Checkout = () => {
   const { cartItems, total } = useContext(CartContext);
   const [name, setName] = useState("");
@@ -212,7 +217,7 @@ const Checkout = () => {
           <h2 className="sr-only">Purchase summary</h2>
           <div>
             <img
-              src="/src/assets/IMG-20240613-WA0016.jpg"
+              src={mainImage}
               alt=""
               className="absolute inset-0 h-full w-full object-cover"
             />
@@ -226,8 +231,8 @@ const Checkout = () => {
                     <img
                       src={
                         item.type === "vip"
-                          ? "/src/assets/IMG-20240613-WA0007.jpg"
-                          : "/src/assets/IMG-20240613-WA0005.jpg"
+                          ? vipTicketImage
+                          : regularTicketImage
                       } // Conditional image path
                       alt={`${item.type} Ticket`}
                       className="max-h-16"
@@ -245,14 +250,6 @@ const Checkout = () => {
                           Quantity: {item.quantity}
                         </p>
                       )}
-                      <ul className="mt-2 text-xs text-white text-opacity-80">
-                        {(item.type === "vip"
-                          ? vipFeatures
-                          : regularFeatures
-                        ).map((feature, i) => (
-                          <li key={i}>- {feature}</li>
-                        ))}
-                      </ul>
                     </div>
                   </div>
                   <p className="text-sm font-semibold text-white">
@@ -268,29 +265,6 @@ const Checkout = () => {
               <p className="flex justify-between text-lg font-bold text-white">
                 <span>Total price:</span>
                 <span>Ksh {calculateTotal()}</span>
-              </p>
-            </div>
-            <div className="mt-10">
-              <h3 className="mb-5 text-lg font-bold text-white">Support</h3>
-              <p className="text-sm font-semibold text-white">
-                0741 011 599 <span className="font-light">(Local)</span>
-              </p>
-              <p className="mt-1 text-sm font-semibold text-white">
-                mirageafrictheatrics@gmail.com{" "}
-                <span className="font-light">(Email)</span>
-              </p>
-              <p className="mt-2 text-xs font-medium text-white">
-                Call us now for payment related issues
-              </p>
-            </div>
-            <div className="relative mt-10 flex">
-              <p className="flex flex-col">
-                <span className="text-sm font-bold text-white">
-                  Money Back Guarantee
-                </span>
-                <span className="text-xs font-medium text-white">
-                  within 30 days of purchase
-                </span>
               </p>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import Typed from "typed.js";
+import heroBg from "../assets/back2.jpg"; // Update the path as needed
 
 const Hero = () => {
   const typedJSRef = useRef(null);
@@ -26,7 +27,18 @@ const Hero = () => {
   };
 
   return (
-    <section className="hero reveal bg-hero bg-center lg:bg-cover bg-no-repeat bg-fixed xl:rounded-bl-290px">
+    <section
+      className="hero reveal bg-center lg:bg-cover bg-no-repeat bg-fixed xl:rounded-bl-290px"
+      style={{
+        backgroundImage: `url(${heroBg})`,
+        height: '100vh',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        marginTop: '90px', /* Adjust based on your header height */
+      }}
+    >
       <div className="container mx-auto h-full flex items-center justify-center xl:justify-start">
         <div className="hero__text flex flex-col items-center text-center xl:text-left lg:items-start">
           <h1 className="text-4xl mb-8 font-extrabold md:text-5xl">

@@ -1,7 +1,12 @@
-import React,  { useEffect }  from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../css/NewsArticle.css"; // Import your CSS file
 import { FaArrowLeft } from "react-icons/fa"; // Import an arrow icon from react-icons
+
+import person1 from '../assets/photo_2024-07-08_15-48-16.jpg';
+import author1 from '../assets/photo_2024-07-08_15-48-04.jpg';
+import person2 from '../assets/photo_2024-07-08_15-48-16.jpg';
+import person3 from '../assets/IMG-20240613-WA0028.jpg';
 
 const NewsArticle = () => {
   const { id } = useParams();
@@ -28,8 +33,8 @@ const NewsArticle = () => {
         
         Justo utroque dissenti as est, possim dolorem assueverit eam ut. Te erat illud aperiri est. Cu duo sanctus scriptorem, nam te habeo fuisset quaestio. Eam et error simul. Ferri utamur instructior vim in, ei per mazim congue, nusquam vituperatoribus eos an. Ne mea salutatus vulputate. Tota tractatos 
       `,
-      image: "/src/assets/photo_2024-07-08_15-48-16.jpg",
-      authorImage: "/src/assets/photo_2024-07-08_15-48-04.jpg",
+      image: person1,
+      authorImage: author1,
       blockquote: "“Acting is LIfe!” — Gideon"
     },
     // other articles...
@@ -44,8 +49,8 @@ const NewsArticle = () => {
         
         Justo utroque dissenti as est, possim dolorem assueverit eam ut. Te erat illud aperiri est. Cu duo sanctus scriptorem, nam te habeo fuisset quaestio. Eam et error simul. Ferri utamur instructior vim in, ei per mazim congue, nusquam vituperatoribus eos an. Ne mea salutatus vulputate. Tota tractatos 
       `,
-      image: '/src/assets/IMG-20240613-WA0011.jpg',
-      authorImage: '/src/assets/photo_2024-07-08_15-48-04.jpg',
+      image: person2,
+      authorImage: author1,
       blockquote: "“Housekeeping is key!” — John Doe"
     },
     3: {
@@ -59,8 +64,8 @@ const NewsArticle = () => {
         
         Justo utroque dissenti as est, possim dolorem assueverit eam ut. Te erat illud aperiri est. Cu duo sanctus scriptorem, nam te habeo fuisset quaestio. Eam et error simul. Ferri utamur instructior vim in, ei per mazim congue, nusquam vituperatoribus eos an. Ne mea salutatus vulputate. Tota tractatos 
       `,
-      image: '/src/assets/IMG-20240613-WA0028.jpg',
-      authorImage: '/src/assets/photo_2024-07-08_15-48-04.jpg',
+      image: person3,
+      authorImage: author1,
       blockquote: "“Coworking is the future!” — Jane Smith"
     },
   };

@@ -1,6 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+// Import images
+import aboutImg from "../assets/IMG-20240613-WA0006.jpg";
+
 const About = () => {
   const navigate = useNavigate();
 
@@ -14,7 +17,7 @@ const About = () => {
         <div className="flex flex-col xl:flex-row text-center xl:text-left justify-center items-center gap-12 xl:gap-12px">
           <div className="about__text flex-1 order-2 xl:order-none max-w-xl xl:max-w-410px flex flex-col items-center xl:items-start gap-8 ">
             <h2 className="text-4xl text-gray-800 font-extrabold mx-auto md:text-5xl">
-              We Bring Art To The Stage:Thespian Style
+              We Bring Art To The Stage: Thespian Style
             </h2>
             <p className=" mb-2 text-gray-800 text-xl md:text-2xl">
               "I don't want realism. I want magic! Yes, yes, magic. I try to
@@ -28,6 +31,7 @@ const About = () => {
             </p>
             <div className="flex items-center justify-center xl:justify-center gap-4 ">
               <div className="bg-accent/15 w-93px h-93px rounded-full xl:justify-center flex justify-center items-center">
+                {/* Uncomment and replace the below SVG with an actual image if needed */}
                 {/* <svg
                   version="1.0"
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +75,7 @@ const About = () => {
           </div>
           <div className="about__img w-full max-w-md flex items-center justify-center">
             <img
-              src="src/assets/IMG-20240613-WA0006.jpg"
+              src={aboutImg}
               alt="Our History Image"
               className="w-full h-auto object-cover rounded-lg"
             />

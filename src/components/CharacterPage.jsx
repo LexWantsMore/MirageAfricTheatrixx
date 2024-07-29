@@ -1,59 +1,70 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Import images
+import back1 from '../assets/back1.jpg';
+import back2 from '../assets/back2.jpg';
+import back3 from '../assets/back3.jpg';
+import back4 from '../assets/back4.jpg';
+import img1 from '../assets/IMG-20240613-WA0012.jpg';
+import back6 from '../assets/back6.jpg';
+import img2 from '../assets/IMG-20240613-WA0021.jpg';
+import img3 from '../assets/IMG-20240613-WA0012.jpg';
+import img4 from '../assets/IMG-20240613-WA0009.jpg';
+
 const characters = [
   {
     name: 'John Doe',
     role: 'Protagonist',
-    image: 'src/assets/back1.jpg',
+    image: back1,
     bio: 'John is the hero of our story, facing challenges with bravery and wit.',
   },
   {
     name: 'John Doe',
     role: 'Protagonist',
-    image: 'src/assets/back2.jpg',
+    image: back2,
     bio: 'John is the hero of our story, facing challenges with bravery and wit.',
   },
   {
     name: 'John Doe',
     role: 'Protagonist',
-    image: 'src/assets/back3.jpg',
+    image: back3,
     bio: 'John is the hero of our story, facing challenges with bravery and wit.',
   },
   {
     name: 'John Doe',
     role: 'Protagonist',
-    image: 'src/assets/back4.jpg',
+    image: back4,
     bio: 'John is the hero of our story, facing challenges with bravery and wit.',
   },
   {
     name: 'John Doe',
     role: 'Protagonist',
-    image: 'src/assets/IMG-20240613-WA0012.jpg',
+    image: img1,
     bio: 'John is the hero of our story, facing challenges with bravery and wit.',
   },
   {
     name: 'John Doe',
     role: 'Protagonist',
-    image: 'src/assets/back6.jpg',
+    image: back6,
     bio: 'John is the hero of our story, facing challenges with bravery and wit.',
   },
   {
     name: 'John Doe',
     role: 'Protagonist',
-    image: 'src/assets/IMG-20240613-WA0021.jpg',
+    image: img2,
     bio: 'John is the hero of our story, facing challenges with bravery and wit.',
   },
   {
     name: 'John Doe',
     role: 'Protagonist',
-    image: 'src/assets/IMG-20240613-WA0012.jpg',
+    image: img3,
     bio: 'John is the hero of our story, facing challenges with bravery and wit.',
   },
   {
     name: 'Jane Smith',
     role: 'Antagonist',
-    image: 'src/assets/IMG-20240613-WA0009.jpg',
+    image: img4,
     bio: 'Jane is the main antagonist, bringing conflict and depth to the plot.',
   },
   // Other characters...

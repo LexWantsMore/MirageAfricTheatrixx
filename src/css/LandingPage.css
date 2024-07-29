@@ -69,7 +69,6 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero section styles */
 .hero {
   height: 100vh; /* Make the hero section full viewport height */
-  background-image: url('src/assets/back2.jpg'); /* Update with your hero image */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -83,6 +82,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 20; /* Ensure it's above other content */
   margin-top: 90px; /* Adjust based on your header height */
 }
+
 
 /* Adjustments for medium screens */
 @media (max-width: 1024px) {

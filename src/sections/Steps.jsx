@@ -1,5 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+import person1 from '../assets/Screenshot 2024-07-28 174010.png';
+import person2 from '../assets/photo_2024-07-08_15-48-13.jpg';
+import person3 from '../assets/photo_2024-07-08_15-47-54.jpg';
+import person4 from '../assets/Screenshot 2024-07-28 171921.png';
 
 const Steps = () => {
   return (
@@ -24,7 +28,7 @@ const Steps = () => {
             <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
               <img
                 className="rounded-lg object-cover w-full h-80 md:h-80 xl:h-80 sm:h-80"
-                src="src\assets\Screenshot 2024-07-28 174010.png"
+                src={person1}
                 alt="Person"
               />
               <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
@@ -70,7 +74,7 @@ const Steps = () => {
             <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
               <img
                 className="rounded-lg object-cover w-full h-80 md:h-80 xl:h-80 sm:h-80"
-                src="src/assets/photo_2024-07-08_15-48-13.jpg"
+                src={person2}
                 alt="Person"
               />
               <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
@@ -115,7 +119,7 @@ const Steps = () => {
             <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
               <img
                 className="rounded-lg object-cover w-full h-80 md:h-80 xl:h-80 sm:h-80"
-                src="src/assets/photo_2024-07-08_15-47-54.jpg"
+                src={person3}
                 alt="Person"
               />
               <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
@@ -160,7 +164,7 @@ const Steps = () => {
             <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">
               <img
                 className="rounded-lg object-cover w-full h-80 md:h-80 xl:h-80 sm:h-80"
-                src="src\assets\Screenshot 2024-07-28 171921.png"
+                src={person4}
                 alt="Person"
               />
               <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
