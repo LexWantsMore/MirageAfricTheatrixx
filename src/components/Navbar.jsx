@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/Xqun4E01.svg'; // Adjust path as necessary
 import cartIcon from '../assets/cart.svg'; // Adjust path as necessary
 import mobileLogo from '../assets/2.1.png'; // Adjust path as necessary
+import '../css/LandingPage.css'; // Adjust path if necessary
+import '../css/Styles.css'; // Adjust path if necessary
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,8 +24,22 @@ const Navbar = () => {
     navigate('/cart');
   };
 
+  useEffect(() => {
+    const handleTouchMove = (event) => {
+      if (event.touches.length > 1 || event.target.classList.contains('swiper-container')) {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+    return () => {
+      document.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, []);
+
   return (
-    <header className="sticky top-0 h-20 w-full p-4 flex justify-between items-center shadow-xl z-30 bg-white overflow-x-hidden">
+    <header className="sticky top-0 h-20 w-full p-4 flex justify-between items-center shadow-xl z-30 bg-white overflow-x-hidden navbar">
       <div className="container mx-auto flex justify-between h-full items-center">
         <a href="#">
           <img
@@ -120,7 +136,7 @@ const Navbar = () => {
               {navigation.map((item, idx) => (
                 <a key={idx} href={item.path} className="text-lg text-gray-800 hover:text-green-600">
                   {item.title}
-                </a>
+                  </a>
               ))}
             </div>
           </nav>
@@ -130,4 +146,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar
