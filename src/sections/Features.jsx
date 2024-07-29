@@ -153,7 +153,7 @@ const Features = () => {
               controls
               autoPlay={true}
             >
-              <source src="src\assets\DSC_9112.MOV (2).mp4" type="video/mp4" />
+              <source src="https://www.dropbox.com/scl/fi/hdd5lceqfrbnx7s1xvvb6/DSC_9112.MOV-2.mp4?rlkey=ou4b19m7de8emdmet5v98zpq3&st=dbdfu5er&dl=0" type="video/mp4" />
             </video>
           </div>
         </div>
