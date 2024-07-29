@@ -208,6 +208,8 @@ h1, h2, h3, h4, h5, h6 {
 header {
   background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
   backdrop-filter: blur(10px); /* Blur effect */
+  width: 100%; /* Full width */
+  overflow-x: hidden; /* Hide horizontal overflow */
 }
 
 header a {
@@ -243,6 +245,7 @@ header a:hover {
   height: 1.5rem; /* Adjust icon size */
   width: 1.5rem; /* Adjust icon size */
 }
+
 /* Hide nav trigger button by default */
 #nav_trigger_btn {
   display: none;

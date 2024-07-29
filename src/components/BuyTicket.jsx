@@ -5,7 +5,7 @@ import axios from "axios";
 import { CartContext } from "../context/CartContext";
 
 // Import your images
-import speakerImage from '../assets/IMG-20240613-WA0006.jpg';
+import speakerImage from "../assets/IMG-20240613-WA0006.jpg";
 
 const BuyTicket = () => {
   const { type } = useParams();
@@ -48,10 +48,14 @@ const BuyTicket = () => {
 
       console.log(response.data);
 
-      const paymentStatus = await waitForPaymentConfirmation(response.data.transactionId);
+      const paymentStatus = await waitForPaymentConfirmation(
+        response.data.transactionId
+      );
 
       if (paymentStatus === "SUCCESS") {
-        setMessage("Payment successful! Your ticket has been purchased. Please check your email for ticket information.");
+        setMessage(
+          "Payment successful! Your ticket has been purchased. Please check your email for ticket information."
+        );
         setTimeout(() => {
           navigate("/check-email");
         }, 3000);
@@ -99,7 +103,7 @@ const BuyTicket = () => {
       return;
     }
     addToCart({ type, ticketPrice, quantity, seats: selectedSeats });
-    navigate('/cart');
+    navigate("/cart");
   };
 
   const Back = () => {
@@ -196,8 +200,8 @@ const BuyTicket = () => {
               </div>
             </div>
           )}
-          <div className="flex space-x-4 mb-5 text-sm font-medium">
-            <div className="flex-auto flex space-x-4">
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-5 text-sm font-medium">
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 flex-auto">
               <button
                 className="h-10 px-6 font-semibold rounded-full bg-green-600 text-white"
                 type="submit"
@@ -206,20 +210,21 @@ const BuyTicket = () => {
                 {loading ? "Processing..." : "Buy now"}
               </button>
               <button
-                className="h-10 px-6 font-semibold rounded-full border  bg-green-600 text-white border-slate-200 "
+                className="h-10 px-6 font-semibold rounded-full border bg-green-600 text-white border-slate-200"
                 type="button"
                 onClick={handleAddToBag}
               >
                 Go to Cart
               </button>
               <button
-                className="h-10 px-6 font-semibold rounded-full border bg-green-600 text-white border-slate-200 "
+                className="h-10 px-6 font-semibold rounded-full border bg-green-600 text-white border-slate-200"
                 type="button"
                 onClick={Back}
               >
                 Back
               </button>
             </div>
+
             <button
               className="flex-none flex items-center justify-center w-9 h-9 rounded-full text-green-600 bg-violet-50"
               type="button"

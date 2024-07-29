@@ -23,7 +23,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 h-20 w-full p-4 flex justify-between items-center shadow-xl z-30 bg-white">
+    <header className="sticky top-0 h-20 w-full p-4 flex justify-between items-center shadow-xl z-30 bg-white overflow-x-hidden">
       <div className="container mx-auto flex justify-between h-full items-center">
         <a href="#">
           <img
@@ -88,7 +88,7 @@ const Navbar = () => {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="fixed inset-0 flex items-start justify-end bg-opacity-50 z-50 pt-20 pr-4">
+        <div className="fixed inset-0 flex items-start justify-end bg-opacity-50 z-50 pt-20 pr-4 overflow-x-hidden">
           <nav className="bg-white p-8 shadow-lg rounded-lg w-80 sm:text-center flex flex-col items-center space-y-5">
             <div className="flex justify-between items-center w-full mb-4">
               <a href="#" className="flex items-center">

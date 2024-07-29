@@ -16,7 +16,7 @@ const About = () => {
       <div className="container mx-auto py-12 xl:px-0">
         <div className="flex flex-col xl:flex-row text-center xl:text-left justify-center items-center gap-12 xl:gap-12px">
           <div className="about__text flex-1 order-2 xl:order-none max-w-xl xl:max-w-410px flex flex-col items-center xl:items-start gap-8 ">
-            <h2 className="text-4xl text-gray-800 font-extrabold mx-auto md:text-5xl">
+            <h2 className="text-4xl text-gray-800 font-extrabold mx-auto md:text-5xl sm:mx-auto">
               We Bring Art To The Stage: Thespian Style
             </h2>
             <p className=" mb-2 text-gray-800 text-xl md:text-2xl">
