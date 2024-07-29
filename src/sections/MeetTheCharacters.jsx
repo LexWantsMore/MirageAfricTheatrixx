@@ -2,30 +2,36 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import EmblaCarousel from '../components/EmblaCarousel';
 
+// Import images
+import img1 from '../assets/IMG-20240613-WA0004.jpg';
+import img2 from '../assets/IMG-20240613-WA0010.jpg';
+import img3 from '../assets/IMG-20240613-WA0005.jpg';
+import img4 from '../assets/IMG-20240613-WA0044.jpg';
+
 const MeetTheCharacters = () => {
   const navigate = useNavigate();
 
   const characters = [
     {
-      imageSrc: "src/assets/IMG-20240613-WA0004.jpg",
+      imageSrc: img1,
       quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero cum incidunt quis similique veniam minus amet eaque illum minima eos.",
       name: "John Doe",
       title: "Main Character",
     },
     {
-      imageSrc: "src/assets/IMG-20240613-WA0010.jpg",
+      imageSrc: img2,
       quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero cum incidunt quis similique veniam minus amet eaque illum minima eos.",
       name: "John Doe",
       title: "Main Character",
     },
     {
-      imageSrc: "src/assets/IMG-20240613-WA0005.jpg",
+      imageSrc: img3,
       quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero cum incidunt quis similique veniam minus amet eaque illum minima eos.",
       name: "John Doe",
       title: "Supporting Character",
     },
     {
-      imageSrc: "src/assets/IMG-20240613-WA0044.jpg",
+      imageSrc: img4,
       quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero cum incidunt quis similique veniam minus amet eaque illum minima eos.",
       name: "John Doe",
       title: "Supporting Character",
@@ -73,27 +79,27 @@ const MeetTheCharacters = () => {
   return (
     <div className="meet-the-characters pt-24 pb-16 sm:pb-24 sm:pt-32 xl:pb-32 bg-gray-20">
       <h2 className="meet-the-characters text-center text-4xl text-gray-800 font-extrabold mx-auto md:text-5xl ">
-          Meet The Characters
-        </h2>
-      <EmblaCarousel slides={slides} options={{ loop: true, autoplay: true}} />
+        Meet The Characters
+      </h2>
+      <EmblaCarousel slides={slides} options={{ loop: true, autoplay: true }} />
       <div className="flex justify-center mt-10">
-        <button 
-          onClick={() => navigate('/characters')} 
+        <button
+          onClick={() => navigate('/characters')}
           className="flex items-center gap-x-2 sm:gap-x-4 py-2 px-3 sm:px-4 text-white font-medium bg-green-800 duration-150 hover:bg-green-700 active:bg-green-900 rounded-lg"
         >
           View All Characters
           <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="w-5 h-5"
+          >
+            <path
+              fillRule="evenodd"
+              d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
+              clipRule="evenodd"
+            />
+          </svg>
         </button>
       </div>
     </div>
