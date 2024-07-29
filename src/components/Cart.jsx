@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
+import speakerImage from "../assets/IMG-20240613-WA0006.jpg";
+import speakerImage2 from "../assets/IMG-20240613-WA0007.jpg";
+
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
   const navigate = useNavigate();
@@ -157,8 +160,8 @@ const Cart = () => {
                     <img
                       src={
                         item.type === "vip"
-                          ? "/src/assets/IMG-20240613-WA0007.jpg"
-                          : "/src/assets/IMG-20240613-WA0005.jpg"
+                          ? speakerImage
+                          : speakerImage2
                       } // Conditional image path
                       alt={`${item.type} Ticket`}
                       className="w-full h-auto rounded-lg sm:w-40 sm:h-40 object-cover"

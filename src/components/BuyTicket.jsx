@@ -7,6 +7,7 @@ import { CartContext } from "../context/CartContext";
 // Import your images
 import speakerImage from "../assets/IMG-20240613-WA0006.jpg";
 
+
 const BuyTicket = () => {
   const { type } = useParams();
   const navigate = useNavigate();
