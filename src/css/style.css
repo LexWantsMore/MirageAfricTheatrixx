@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
+.vip-seat-booking * {
+  box-sizing: border-box;
+}
+
+.vip-seat-booking {
+  background-color: #ffffff;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.vip-seat-booking .ticket-container {
+  margin: 20px 0;
+}
+
+.vip-seat-booking .ticket-container select {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-left: 10px;
+  padding: 5px 15px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.vip-seat-booking .container {
+  perspective: 1000px;
+  margin-bottom: 30px;
+}
+
+.vip-seat-booking .seat {
+  background-color: #dddddd;
+  height: 25px;
+  width: 30px;
+  margin: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.vip-seat-booking .seat::before {
+  content: attr(data-seat-number);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #333;
+}
+
+.vip-seat-booking .seat.selected {
+  background-color: #4caf50;
+}
+
+.vip-seat-booking .seat.sold {
+  background-color: #811919;
+}
+
+.vip-seat-booking .seat:not(.sold):hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.vip-seat-booking .seat:not(.sold):hover::before {
+  display: flex;
+}
+
+.vip-seat-booking .showcase .seat:not(.sold):hover {
+  cursor: default;
+  transform: scale(1);
+}
+
+.vip-seat-booking .showcase {
+  background: rgba(240, 240, 240, 0.9);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #777;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.vip-seat-booking .showcase li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.vip-seat-booking .showcase li small {
+  margin-left: 2px;
+}
+
+.vip-seat-booking .row {
+  display: flex;
+  justify-content: center;
+}
+
+.vip-seat-booking .screen {
+  background-color: #e0e0e0;
+  height: 120px;
+  width: 100%;
+  margin: 40px 0;
+  transform: rotateX(-48deg);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.vip-seat-booking p.text {
+  margin: 5px 0;
+}
+
+.vip-seat-booking p.text span {
+  color: #4caf50;
+}
+
+.vip-seat-booking .checkout-button {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between; 
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.vip-seat-booking .checkout-button:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 600px) {
+  .vip-seat-booking {
+    padding: 10px;
+  }
+
+  .vip-seat-booking .container {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .vip-seat-booking .ticket-container select {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+
+  .vip-seat-booking .seat {
+    height: 20px;
+    width: 20px;
+    margin: 3px;
+  }
+
+  .vip-seat-booking .screen {
+    height: 60px;
+  }
+
+  .vip-seat-booking .checkout-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .vip-seat-booking .showcase {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .vip-seat-booking .showcase li {
+    margin: 5px 0;
+  }
+}

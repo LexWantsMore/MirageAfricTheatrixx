@@ -1,0 +1,99 @@
+/* NewsArticle.css */
+
+/* Styling for the back button */
+.back-button {
+    display: flex;
+    align-items: center;
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #6b7280; /* Tailwind gray-500 */
+    text-decoration: none;
+    margin-bottom: 2rem;
+  }
+  
+  .back-button:hover {
+    color: #000;
+  }
+  
+  .back-icon {
+    margin-right: 0.5rem;
+    font-size: 1rem;
+  }
+  .full-width-container {
+    width: 100%;
+    padding: 1rem; /* Adjust padding as needed */
+  }
+  
+  .p-left {
+    text-align: left;
+  }
+  
+  /* Styling for the author container */
+  .author-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .author-image {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+  }
+  .image-container img {
+    border-radius: 0.5rem; /* Rounded edges */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .image-container img:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+  }
+  
+  .author-name {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .author-date {
+    font-family: 'Merriweather', serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: #6b7280; /* Tailwind gray-500 */
+  }
+  
+  /* Styling for the news title */
+  .news-title {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  /* Styling for the content */
+  .news-article-content {
+    font-family: 'Merriweather', serif;
+    font-weight: 300;
+    font-size: 1.65rem; /* 18px */
+    line-height: 1.75; /* Tailwind leading-relaxed */
+    color: #374151; /* Tailwind gray-700 */
+    margin-bottom: 1.5rem; /* Spacing between paragraphs */
+    text-align: left;
+  }
+  
+  /* Styling for the quotation */
+  .news-article-quote {
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    font-size: 1.5rem; /* 24px */
+    font-style: italic;
+    text-align: center;
+    margin: 2rem 0; /* Space above and below the quote */
+  }
+  

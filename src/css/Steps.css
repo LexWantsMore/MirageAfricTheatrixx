@@ -1,0 +1,125 @@
+General container styles
+.steps-container {
+    max-width: 768px; /* Matches max-w-2xl */
+    margin: 2rem auto; /* Adds margin above and below the steps section */
+    padding: 1rem; /* Adds padding around the steps section */
+    background-color: #f9fafb; /* Optional: Adds a background color for better visibility */
+    border-radius: 8px; /* Optional: Adds rounded corners */
+}
+
+@media (min-width: 768px) {
+    .steps-container {
+        padding: 2rem; /* Adds more padding for larger screens */
+    }
+}
+
+/* Steps list styles */
+.steps-list {
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif; /* Customize with your preferred font */
+    color: #4B5563; /* text-gray-600 */
+    transition: color 0.3s ease, font-weight 0.3s ease; /* Smooth transition for color and font-weight */
+}
+
+.steps-list li {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+.steps-list li:last-child {
+    flex: none;
+}
+
+/* Step circle styles */
+.step-circle {
+    width: 2rem; /* Matches w-8 */
+    height: 2rem; /* Matches h-8 */
+    border-radius: 9999px; /* Matches rounded-full */
+    border-width: 2px; /* Matches border-2 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition for background and border color */
+}
+
+.step-circle.completed {
+    background-color: #4F46E5; /* bg-indigo-600 */
+    border-color: #4F46E5; /* border-indigo-600 */
+}
+
+.step-circle.current {
+    border-color: #4F46E5; /* border-indigo-600 */
+}
+
+.step-circle span {
+    display: inline-block;
+    transition: color 0.3s ease; /* Smooth transition for text color */
+}
+
+.step-circle span.hidden {
+    display: none;
+}
+
+.step-circle span.current {
+    color: #4F46E5; /* text-indigo-600 */
+}
+
+/* Icon styles */
+.step-icon {
+    width: 1.25rem; /* Matches w-5 */
+    height: 1.25rem; /* Matches h-5 */
+    color: white;
+}
+
+/* Arrow styles */
+.step-arrow {
+    width: 1.25rem; /* Matches w-5 */
+    height: 1.25rem; /* Matches h-5 */
+    color: #6B7280; /* text-gray-500 */
+}
+
+/* Step text styles */
+.step-text {
+    font-size: 0.875rem; /* text-sm */
+    transition: color 0.3s ease, font-weight 0.3s ease; /* Smooth transition for color and font-weight */
+}
+
+.step-text.current {
+    color: #4F46E5; /* text-indigo-600 */
+    font-weight: bold;
+}
+
+/* Arrow styles for mobile */
+.arrow-mobile {
+    height: 3rem; /* Matches h-12 */
+    display: flex;
+    align-items: center;
+}
+
+.arrow-mobile.hidden {
+    display: none;
+}
+
+/* Arrow styles for desktop */
+.arrow-desktop {
+    flex: 1;
+    display: none;
+}
+
+.arrow-desktop.show {
+    display: block;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .arrow-desktop {
+        display: block;
+    }
+
+    .arrow-mobile {
+        display: none;
+    }
+}
