@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Assuming you're using react-router for navigation
+import { useNavigate } from 'react-router-dom';
+import logo from '../assets/Xqun4E01.svg'; // Adjust path as necessary
+import cartIcon from '../assets/cart.svg'; // Adjust path as necessary
+import mobileLogo from '../assets/2.1.png'; // Adjust path as necessary
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+
   const handleNavToggle = () => setIsMenuOpen(!isMenuOpen);
 
   const navigation = [
@@ -13,7 +17,6 @@ const Navbar = () => {
     { title: "Meet the Characters", path: "#meet-the-characters" },
     { title: "Contacts", path: "#contact" },
   ];
-  
 
   const handleCartClick = () => {
     navigate('/cart');
@@ -24,7 +27,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between h-full items-center">
         <a href="#">
           <img
-            src="src/assets/Xqun4E01.svg"
+            src={logo}
             alt="Theatre Group Logo"
             className="h-20 w-20 object-cover"
           />
@@ -77,7 +80,7 @@ const Navbar = () => {
           </button>
           <button onClick={handleCartClick} className="outline-none">
             <img
-              src="src/assets/cart.svg"
+              src={cartIcon}
               alt="Cart Icon"
               className="h-6 w-6 object-cover"
             />
@@ -90,7 +93,7 @@ const Navbar = () => {
             <div className="flex justify-between items-center w-full mb-4">
               <a href="#" className="flex items-center">
                 <img
-                  src="src/assets/2.1.png"
+                  src={mobileLogo}
                   alt="Theatre Group Logo"
                   className="h-20 w-30 rounded-full object-cover"
                 />
