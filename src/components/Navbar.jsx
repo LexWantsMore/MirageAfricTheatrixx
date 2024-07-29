@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import logo from '../assets/Xqun4E01.svg'; // Adjust path as necessary
-import cartIcon from '../assets/cart.svg'; // Adjust path as necessary
-import mobileLogo from '../assets/2.1.png'; // Adjust path as necessary
-import '../css/LandingPage.css'; // Adjust path if necessary
-import '../css/Styles.css'; // Adjust path if necessary
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Assuming you're using react-router for navigation
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-
   const handleNavToggle = () => setIsMenuOpen(!isMenuOpen);
 
   const navigation = [
@@ -19,31 +13,18 @@ const Navbar = () => {
     { title: "Meet the Characters", path: "#meet-the-characters" },
     { title: "Contacts", path: "#contact" },
   ];
+  
 
   const handleCartClick = () => {
     navigate('/cart');
   };
 
-  useEffect(() => {
-    const handleTouchMove = (event) => {
-      if (event.touches.length > 1 || event.target.classList.contains('swiper-container')) {
-        event.preventDefault();
-      }
-    };
-
-    document.addEventListener('touchmove', handleTouchMove, { passive: false });
-
-    return () => {
-      document.removeEventListener('touchmove', handleTouchMove);
-    };
-  }, []);
-
   return (
-    <header className="sticky top-0 h-20 w-full p-4 flex justify-between items-center shadow-xl z-30 bg-white overflow-x-hidden navbar">
+    <header className="sticky top-0 h-20 w-full p-4 flex justify-between items-center shadow-xl z-30 bg-white">
       <div className="container mx-auto flex justify-between h-full items-center">
         <a href="#">
           <img
-            src={logo}
+            src="src/assets/Xqun4E01.svg"
             alt="Theatre Group Logo"
             className="h-20 w-20 object-cover"
           />
@@ -96,7 +77,7 @@ const Navbar = () => {
           </button>
           <button onClick={handleCartClick} className="outline-none">
             <img
-              src={cartIcon}
+              src="src/assets/cart.svg"
               alt="Cart Icon"
               className="h-6 w-6 object-cover"
             />
@@ -104,12 +85,12 @@ const Navbar = () => {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="fixed inset-0 flex items-start justify-end bg-opacity-50 z-50 pt-20 pr-4 overflow-x-hidden">
+        <div className="fixed inset-0 flex items-start justify-end bg-opacity-50 z-50 pt-20 pr-4">
           <nav className="bg-white p-8 shadow-lg rounded-lg w-80 sm:text-center flex flex-col items-center space-y-5">
             <div className="flex justify-between items-center w-full mb-4">
               <a href="#" className="flex items-center">
                 <img
-                  src={mobileLogo}
+                  src="src/assets/2.1.png"
                   alt="Theatre Group Logo"
                   className="h-20 w-30 rounded-full object-cover"
                 />
@@ -136,7 +117,7 @@ const Navbar = () => {
               {navigation.map((item, idx) => (
                 <a key={idx} href={item.path} className="text-lg text-gray-800 hover:text-green-600">
                   {item.title}
-                  </a>
+                </a>
               ))}
             </div>
           </nav>
@@ -146,4 +127,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar
+export default Navbar;

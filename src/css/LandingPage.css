@@ -14,7 +14,6 @@
 
 body {
   font-family: var(--font-primary);
-  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -70,6 +69,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero section styles */
 .hero {
   height: 100vh; /* Make the hero section full viewport height */
+  background-image: url('src/assets/back2.jpg'); /* Update with your hero image */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -83,7 +83,6 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 20; /* Ensure it's above other content */
   margin-top: 90px; /* Adjust based on your header height */
 }
-
 
 /* Adjustments for medium screens */
 @media (max-width: 1024px) {
@@ -205,12 +204,63 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 0.5rem;
 }
 
+/* Extra extra small screens (max-width: 360px) */
+@media (max-width: 360px) {
+  .hero {
+    height: 40vh; /* Further reduced height */
+    padding: 0.25rem; /* Minimal padding */
+    border-bottom-left-radius: 60px; /* Further adjustment of rounded corner */
+  }
+
+  .hero__text {
+    width: 100%; /* Full width for very small screens */
+  }
+
+  .hero__text h1 {
+    font-size: 1.5rem; /* Smaller font size */
+  }
+
+  .hero__text .typed-text {
+    font-size: 1rem; /* Smaller font size */
+  }
+
+  .hero__text .cta-button {
+    padding: 0.4rem 0.8rem; /* Reduced padding */
+    font-size: 0.75rem; /* Smaller font size */
+  }
+}
+
+/* Extremely small screens (max-width: 320px) */
+@media (max-width: 320px) {
+  .hero {
+    height: 35vh; /* Even smaller height */
+    padding: 0.25rem; /* Minimal padding */
+    border-bottom-left-radius: 50px; /* Further rounded corner */
+  }
+
+  .hero__text {
+    width: 100%; /* Full width */
+  }
+
+  .hero__text h1 {
+    font-size: 1.25rem; /* Further reduced font size */
+  }
+
+  .hero__text .typed-text {
+    font-size: 0.875rem; /* Further reduced font size */
+  }
+
+  .hero__text .cta-button {
+    padding: 0.35rem 0.7rem; /* Further reduced padding */
+    font-size: 0.65rem; /* Further reduced font size */
+  }
+}
+
+
 /* Navbar styles */
 header {
   background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
   backdrop-filter: blur(10px); /* Blur effect */
-  width: 100%; /* Full width */
-  overflow-x: hidden; /* Hide horizontal overflow */
 }
 
 header a {
@@ -246,13 +296,9 @@ header a:hover {
   height: 1.5rem; /* Adjust icon size */
   width: 1.5rem; /* Adjust icon size */
 }
-
 /* Hide nav trigger button by default */
 #nav_trigger_btn {
   display: none;
-}
-.navbar {
-  touch-action: none;
 }
 
 
