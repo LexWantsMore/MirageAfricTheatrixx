@@ -5,7 +5,7 @@ import heroBg from "../assets/back2.jpg"; // Update the path as needed
 const Hero = () => {
   const typedJSRef = useRef(null);
 
-  useEffect(() => {
+  useEffect(() => {  
     if (typedJSRef.current) {
       const typedJS = new Typed(typedJSRef.current, {
         strings: ["Act", "Dream", "Inspire"],
