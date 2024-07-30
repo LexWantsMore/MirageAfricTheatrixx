@@ -82,81 +82,10 @@ h1, h2, h3, h4, h5, h6 {
   position: relative; /* Ensure relative positioning */
   z-index: 20; /* Ensure it's above other content */
   margin-top: 90px; /* Adjust based on your header height */
-}
-
-/* Adjustments for medium screens */
-@media (max-width: 1024px) {
-  .hero {
-    height: 80vh;
-    padding: 2rem;
-    border-bottom-left-radius: 200px; /* Adjust rounded corner */
-  }
-
-  .hero__text {
-    width: 80%;
-  }
-
-  .hero__text h1 {
-    font-size: 3rem;
-  }
-
-  .hero__text .typed-text {
-    font-size: 2rem;
-  }
-
-  .hero__text .cta-button {
-    padding: 0.5rem 1rem;
-  }
-}
-
-/* Adjustments for small screens */
-@media (max-width: 768px) {
-  .hero {
-    height: 70vh;
-    padding: 1rem;
-    border-bottom-left-radius: 150px; /* Adjust rounded corner */
-  }
-
-  .hero__text {
-    width: 90%;
-  }
-
-  .hero__text h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero__text .typed-text {
-    font-size: 1.75rem;
-  }
-
-  .hero__text .cta-button {
-    padding: 0.5rem 1rem;
-  }
-}
-
-/* Further adjustments for extra small screens */
-@media (max-width: 480px) {
-  .hero {
-    height: 60vh;
-    padding: 0.5rem;
-    border-bottom-left-radius: 100px; /* Adjust rounded corner */
-  }
-
-  .hero__text {
-    width: 100%;
-  }
-
-  .hero__text h1 {
-    font-size: 2rem;
-  }
-
-  .hero__text .typed-text {
-    font-size: 1.5rem;
-  }
-
-  .hero__text .cta-button {
-    padding: 0.5rem 1rem;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .hero__text {
@@ -165,7 +94,6 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   color: #383b3f; /* Text color */
 }
 
@@ -204,55 +132,87 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 0.5rem;
 }
 
-/* Extra extra small screens (max-width: 360px) */
-@media (max-width: 360px) {
+/* Adjustments for medium screens */
+@media (max-width: 1024px) {
   .hero {
-    height: 40vh; /* Further reduced height */
-    padding: 0.25rem; /* Minimal padding */
-    border-bottom-left-radius: 60px; /* Further adjustment of rounded corner */
-  }
-
-  .hero__text {
-    width: 100%; /* Full width for very small screens */
+    height: 80vh;
+    padding: 2rem;
+    border-bottom-left-radius: 200px; /* Adjust rounded corner */
   }
 
   .hero__text h1 {
-    font-size: 1.5rem; /* Smaller font size */
+    font-size: 3rem;
   }
 
   .hero__text .typed-text {
-    font-size: 1rem; /* Smaller font size */
+    font-size: 2rem;
   }
 
   .hero__text .cta-button {
-    padding: 0.4rem 0.8rem; /* Reduced padding */
-    font-size: 0.75rem; /* Smaller font size */
+    padding: 0.5rem 1rem;
   }
 }
 
-/* Extremely small screens (max-width: 320px) */
-@media (max-width: 320px) {
+/* Adjustments for small screens */
+@media (max-width: 768px) {
   .hero {
-    height: 35vh; /* Even smaller height */
-    padding: 0.25rem; /* Minimal padding */
-    border-bottom-left-radius: 50px; /* Further rounded corner */
-  }
-
-  .hero__text {
-    width: 100%; /* Full width */
+    height: 70vh;
+    padding: 1rem;
+    border-bottom-left-radius: 150px; /* Adjust rounded corner */
   }
 
   .hero__text h1 {
-    font-size: 1.25rem; /* Further reduced font size */
+    font-size: 2.5rem;
   }
 
   .hero__text .typed-text {
-    font-size: 0.875rem; /* Further reduced font size */
+    font-size: 1.75rem;
   }
 
   .hero__text .cta-button {
-    padding: 0.35rem 0.7rem; /* Further reduced padding */
-    font-size: 0.65rem; /* Further reduced font size */
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Further adjustments for extra small screens */
+@media (max-width: 480px) {
+  .hero {
+    height: 60vh;
+    padding: 0.5rem;
+    border-bottom-left-radius: 100px; /* Adjust rounded corner */
+  }
+
+  .hero__text h1 {
+    font-size: 2rem;
+  }
+
+  .hero__text .typed-text {
+    font-size: 1.5rem;
+  }
+
+  .hero__text .cta-button {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Adjustments for very small screens */
+@media (max-width: 360px) {
+  .hero {
+    height: 50vh;
+    padding: 0.25rem;
+    border-bottom-left-radius: 50px; /* Adjust rounded corner */
+  }
+
+  .hero__text h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero__text .typed-text {
+    font-size: 1.25rem;
+  }
+
+  .hero__text .cta-button {
+    padding: 0.25rem 0.5rem;
   }
 }
 
@@ -422,6 +382,7 @@ header a:hover {
 .ticket-card {
   position: relative;
   background-color: #f9fafb; /* Light background color for the cards */
+  border: 2px solid #acb2bd; /* Darker border color */
   border-radius: 1rem;
   padding: 2rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -454,7 +415,7 @@ header a:hover {
 }
 
 .ticket-card .ticket-button:hover {
-  background-color: #1d4ed8;
+  background-color: #06832f;
 }
 
 .ticket-card li {
@@ -467,7 +428,38 @@ header a:hover {
   flex-shrink: 0;
 }
 
+/* Adjustments for medium screens */
+@media (max-width: 1024px) {
+  .ticket-card {
+    padding: 1.5rem;
+  }
 
+  .ticket-card .ticket-button {
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+/* Adjustments for small screens */
+@media (max-width: 768px) {
+  .ticket-card {
+    padding: 1rem;
+  }
+
+  .ticket-card .ticket-button {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Further adjustments for extra small screens */
+@media (max-width: 480px) {
+  .ticket-card {
+    padding: 0.75rem;
+  }
+
+  .ticket-card .ticket-button {
+    padding: 0.5rem 0.75rem;
+  }
+}
 
 /* News Section */
 .news {

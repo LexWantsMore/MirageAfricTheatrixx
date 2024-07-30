@@ -113,9 +113,9 @@ const BuyTicket = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white-100 p-6">
-      <h1 className="text-4xl text-gray-800 font-extrabold mx-auto md:text-5xl leading-10 mb-2 text-center">
+      {/* <h1 className="text-4xl text-gray-800 font-extrabold mx-auto md:text-5xl leading-10 mb-2 text-center">
         Buy {type === "vip" ? "VIP" : "Regular"} Ticket
-      </h1>
+      </h1> */}
       <div className="flex flex-col md:flex-row font-sans">
         <div className="flex-none p-4 w-full md:w-56 relative mb-4 md:mb-0">
           <img
