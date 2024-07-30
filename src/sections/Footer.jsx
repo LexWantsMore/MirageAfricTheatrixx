@@ -89,7 +89,7 @@ const Footer = () => {
       <div className="footer max-w-screen-xl mx-auto px-4 md:px-8">
         <div className="justify-between items-center gap-12 md:flex">
           <div className="flex-1 max-w-lg mb-6 md:mb-0">
-            <h4 className="text-2xl text-gray-800 font-semibold md:text-3xl">
+            <h4 className="text-4xl text-gray-800 font-extrabold md:text-3xl">
               Get our beautiful newsletter straight to your inbox.
             </h4>
           </div>
@@ -117,7 +117,7 @@ const Footer = () => {
                   type="email"
                   required
                   placeholder="Enter your email"
-                  className="w-full pl-12 pr-3 py-2 text-gray-500 bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                  className="w-full pl-12 pr-3 py-2 text-gray-500 bg-white outline-none border focus:border-green-600 shadow-sm rounded-lg"
                 />
               </div>
               <button className="bg-green-500 text-white px-4 py-2 rounded-lg ml-3 hover:bg-green-600 transition duration-150">

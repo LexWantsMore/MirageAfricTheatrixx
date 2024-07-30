@@ -382,7 +382,7 @@ header a:hover {
 .ticket-card {
   position: relative;
   background-color: #f9fafb; /* Light background color for the cards */
-  border: 2px solid #acb2bd; /* Darker border color */
+  border: 2px solid #d5d8dd; /* Darker border color */
   border-radius: 1rem;
   padding: 2rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
