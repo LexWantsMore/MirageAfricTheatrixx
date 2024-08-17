@@ -1,9 +1,9 @@
 import React from "react";
 
-import person1 from '../assets/Screenshot 2024-07-28 174010.png';
-import person2 from '../assets/photo_2024-07-08_15-48-13.jpg';
+import person1 from '../assets/WhatsApp Image 2024-08-15 at 19.20.32_fbe04511.jpg';
+import person2 from '../assets/Screenshot 2024-07-28 171921.png';
 import person3 from '../assets/photo_2024-07-08_15-47-54.jpg';
-import person4 from '../assets/Screenshot 2024-07-28 171921.png';
+import person4 from '../assets/Screenshot 2024-07-28 174010.png';
 
 const Steps = () => {
   return (
@@ -33,13 +33,14 @@ const Steps = () => {
               />
               <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
                 <p className="mb-1 text-lg font-bold text-gray-100">
-                  Leonard Otieno
+                  Brian Oduor
                 </p>
                 <p className="mb-4 text-xs text-gray-100">Human Resources</p>
                 <p className="mb-4 text-xs tracking-wide text-gray-400">
-                  "Your job as a writer is to take all the personal, unique,
+                  "Our stories are our truth, they become our audience realities because we tell them candidly...."
+                  {/* "Your job as a writer is to take all the personal, unique,
                   peculiar things about yourself and turn them into something
-                  that will appeal to other people."
+                  that will appeal to other people." */}
                 </p>
                 <div className="flex items-center justify-center space-x-3">
                   <a
@@ -79,7 +80,7 @@ const Steps = () => {
               />
               <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
                 <p className="mb-1 text-lg font-bold text-gray-100">
-                  Brian Oduor
+                  Mariah Karii
                 </p>
                 <p className="mb-4 text-xs text-gray-100">Director</p>
                 <p className="mb-4 text-xs tracking-wide text-gray-400">
@@ -169,7 +170,7 @@ const Steps = () => {
               />
               <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
                 <p className="mb-1 text-lg font-bold text-gray-100">
-                  Mariah Karii
+                Leonard Otieno
                 </p>
                 <p className="mb-4 text-xs text-gray-100">Human Resources</p>
                 <p className="mb-4 text-xs tracking-wide text-gray-400">

@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import BuyTicket from './components/BuyTicket';
 import CheckEmail from './components/CheckEmail';
@@ -9,25 +9,46 @@ import Checkout from './components/Checkout';
 import { CartProvider } from './context/CartContext';
 import CharactersPage from './components/CharacterPage';
 import VIPSeatBooking from './components/VIPSeatBooking';
-import News from './sections/News'; // Import the News component
+import News from './sections/News';
+import Loader from './components/Loader';
 
 import "../src/css/Styles.css";
+
+function Main() {
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate(path);
+    }, 2000); // Adjust the delay time as needed
+  };
+
+  return (
+    <>
+      {loading && <Loader />}
+      <Routes>
+        <Route path="/" element={<LandingPage onNavigate={handleNavigation} />} />
+        <Route path="/buy/:type" element={<BuyTicket onNavigate={handleNavigation} />} />
+        <Route path="/check-email" element={<CheckEmail onNavigate={handleNavigation} />} />
+        <Route path="/cart" element={<Cart onNavigate={handleNavigation} />} />
+        <Route path="/characters" element={<CharactersPage onNavigate={handleNavigation} />} />
+        <Route path="/checkout" element={<Checkout onNavigate={handleNavigation} />} />
+        <Route path="/vip-seat-booking" element={<VIPSeatBooking onNavigate={handleNavigation} />} />
+        <Route path="/news-article/:id" element={<NewsArticle onNavigate={handleNavigation} />} />
+        <Route path="/news" element={<News onNavigate={handleNavigation} />} />
+      </Routes>
+    </>
+  );
+}
 
 function App() {
   return (
     <CartProvider>
       <Router>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/buy/:type" element={<BuyTicket />} />
-          <Route path="/check-email" element={<CheckEmail />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/characters" element={<CharactersPage />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/vip-seat-booking" element={<VIPSeatBooking />} />
-          <Route path="/news-article/:id" element={<NewsArticle />} /> {/* Update this route */}
-          <Route path="/news" element={<News />} /> {/* Add this route */}
-        </Routes>
+        <Main />
       </Router>
     </CartProvider>
   );
