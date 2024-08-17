@@ -1,12 +1,9 @@
-// BuyTicket Component
 import React, { useContext, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { CartContext } from "../context/CartContext";
-
-// Import your images
 import speakerImage from "../assets/IMG-20240613-WA0006.jpg";
-
+import Loader from "./Loader"; // Import the Loader component
 
 const BuyTicket = () => {
   const { type } = useParams();
@@ -23,6 +20,7 @@ const BuyTicket = () => {
   const [paymentMethod, setPaymentMethod] = useState("MPESA");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingCart, setLoadingCart] = useState(false);
   const [quantity, setQuantity] = useState(initialQuantity);
   const { addToCart } = useContext(CartContext);
   const ticketPrice = type === "vip" ? 200 : 100;
@@ -103,8 +101,12 @@ const BuyTicket = () => {
       setMessage("Please fill in all the required fields.");
       return;
     }
+    setLoadingCart(true);
     addToCart({ type, ticketPrice, quantity, seats: selectedSeats });
-    navigate("/cart");
+    setTimeout(() => {
+      navigate("/cart");
+      setLoadingCart(false);
+    }, 1500); // Simulate a loading time before navigation
   };
 
   const Back = () => {
@@ -113,9 +115,7 @@ const BuyTicket = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white-100 p-6">
-      {/* <h1 className="text-4xl text-gray-800 font-extrabold mx-auto md:text-5xl leading-10 mb-2 text-center">
-        Buy {type === "vip" ? "VIP" : "Regular"} Ticket
-      </h1> */}
+       {loading && <Loader />} {/* Show loader while loading */}
       <div className="flex flex-col md:flex-row font-sans">
         <div className="flex-none p-4 w-full md:w-56 relative mb-4 md:mb-0">
           <img
@@ -214,8 +214,9 @@ const BuyTicket = () => {
                 className="h-10 px-6 font-semibold rounded-full border bg-green-600 text-white border-slate-200"
                 type="button"
                 onClick={handleAddToBag}
+                disabled={loadingCart}
               >
-                Go to Cart
+                {loadingCart ? "Adding to Cart..." : "Go to Cart"}
               </button>
               <button
                 className="h-10 px-6 font-semibold rounded-full border bg-green-600 text-white border-slate-200"
@@ -225,7 +226,6 @@ const BuyTicket = () => {
                 Back
               </button>
             </div>
-
             <button
               className="flex-none flex items-center justify-center w-9 h-9 rounded-full text-green-600 bg-violet-50"
               type="button"
@@ -240,15 +240,14 @@ const BuyTicket = () => {
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
-                  d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                  d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.656 3.172 10.828a4 4 0 010-5.656z"
                 />
               </svg>
             </button>
           </div>
-          <p className="text-sm text-slate-500">
-            Please arrive early to enjoy the show.
-          </p>
-          {message && <p className="mt-4 text-red-600">{message}</p>}
+          {message && (
+            <div className="mt-4 text-center text-red-500">{message}</div>
+          )}
         </form>
       </div>
     </div>

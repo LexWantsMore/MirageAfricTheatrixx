@@ -1,28 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
+import Loader from "./Loader"; // Import the Loader component
 
 import speakerImage from "../assets/IMG-20240613-WA0006.jpg";
 import speakerImage2 from "../assets/IMG-20240613-WA0007.jpg";
 
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleContinueToPayment = () => {
-    navigate("/checkout");
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/checkout");
+    }, 2000); // Adjust the delay time as needed
   };
 
   const handleBack = () => {
-    window.history.back();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      window.history.back();
+    }, 2000); // Adjust the delay time as needed
   };
 
   const handlePurchaseRegular = () => {
-    navigate("/buy/regular");
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/buy/regular");
+    }, 2000); // Adjust the delay time as needed
   };
 
   const handlePurchaseVIP = () => {
-    navigate("/vip-seat-booking");
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/vip-seat-booking");
+    }, 2000); // Adjust the delay time as needed
   };
 
   const calculateTotal = () => {
@@ -54,7 +72,8 @@ const Cart = () => {
 
   return (
     <div className="h-screen bg-white flex items-center justify-center">
-      <div className="w-full max-w-md mx-auto px-6">
+      {loading && <Loader />} {/* Show loader while loading */}
+      <div className={`w-full max-w-md mx-auto px-6 ${loading ? "opacity-50 pointer-events-none" : ""}`}>
         <div className="relative rounded-lg shadow-lg bg-white">
           {cartItems.length === 0 ? (
             <div className="relative flex-1 flex items-stretch flex-col rounded-xl border-2 mt-6 sm:mt-0">
@@ -281,7 +300,7 @@ const Cart = () => {
             </div>
             <button
               onClick={handleContinueToPayment}
-              className="mt-6 w-full rounded-md bg-green-500 py-1.5 font-medium text-blue-50 hover:bg-green-600"
+              className="mt-6 w-full rounded-md bg-green-600 py-1.5 font-medium text-blue-50 hover:bg-green-500"
             >
               Continue to Checkout
             </button>

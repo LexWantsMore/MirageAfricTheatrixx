@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const plans = [
@@ -31,10 +31,24 @@ const plans = [
 ];
 
 const Tickets = () => {
+  const [loadingVIP, setLoadingVIP] = useState(false);
+  const [loadingRegular, setLoadingRegular] = useState(false);
   const navigate = useNavigate();
 
   const handleVIPClick = () => {
-    navigate("/vip-seat-booking");
+    setLoadingVIP(true);
+    setTimeout(() => {
+      setLoadingVIP(false);
+      navigate("/vip-seat-booking");
+    }, 2000); // Simulate a 2-second loading time
+  };
+
+  const handleRegularClick = (path) => {
+    setLoadingRegular(true);
+    setTimeout(() => {
+      setLoadingRegular(false);
+      navigate(path);
+    }, 2000);
   };
 
   return (
@@ -84,19 +98,33 @@ const Tickets = () => {
               </ul>
               <div className="flex-1 flex items-end">
                 {plan.name === "VIP Ticket" ? (
+                  loadingVIP ? (
+                    <div className="flex justify-center w-full">
+                      <div className="loader border-t-transparent border-solid animate-spin rounded-full border-green-600 border-4 h-6 w-6"></div>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={handleVIPClick}
+                      className="px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-green-600 hover:bg-green-500 active:bg-green-700"
+                    >
+                      Buy {plan.name}
+                    </button>
+                  )
+                ) : loadingRegular ? (
+                  <div className="flex justify-center w-full">
+                    <div className="loader border-t-transparent border-solid animate-spin rounded-full border-green-600 border-4 h-6 w-6"></div>
+                  </div>
+                ) : (
                   <button
-                    onClick={handleVIPClick}
+                    onClick={() =>
+                      handleRegularClick(
+                        `/buy/${plan.name.toLowerCase().replace(" ", "-")}`
+                      )
+                    }
                     className="px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-green-600 hover:bg-green-500 active:bg-green-700"
                   >
                     Buy {plan.name}
                   </button>
-                ) : (
-                  <Link
-                    to={`/buy/${plan.name.toLowerCase().replace(" ", "-")}`}
-                    className="px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-green-600 hover:bg-green-500 active:bg-green-700"
-                  >
-                    Buy {plan.name}
-                  </Link>
                 )}
               </div>
             </div>
