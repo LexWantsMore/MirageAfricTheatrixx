@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import NewsImage1 from "../assets/photo_2024-07-08_15-48-16.jpg";
 import AuthorImage from "../assets/photo_2024-07-08_15-48-04.jpg";
 import NewsImage2 from "../assets/IMG-20240613-WA0011.jpg";
 import NewsImage3 from "../assets/IMG-20240613-WA0028.jpg";
+import Loader from '../components/Loader'; // Import your Loader component
 
 const News = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const handleReadMoreClick = (id) => {
-    navigate(`/news-article/${id}`);
+    setLoading(true); // Start loading
+    setTimeout(() => {
+      navigate(`/news-article/${id}`); // Navigate after loading
+    }, 2000); // Simulate a delay of 2 seconds
   };
+  if (loading) {
+    return <Loader />; // Show loader if loading
+  }
 
   return (
     <section className="news mt-[80px] xl:mt-[150px] relative z-20">

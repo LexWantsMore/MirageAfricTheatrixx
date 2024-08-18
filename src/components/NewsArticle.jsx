@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../css/NewsArticle.css"; // Import your CSS file
 import { FaArrowLeft } from "react-icons/fa"; // Import an arrow icon from react-icons
+import Loader from '../components/Loader'; // Import your Loader component
 
 import person1 from '../assets/photo_2024-07-08_15-48-16.jpg';
 import author1 from '../assets/photo_2024-07-08_15-48-04.jpg';
@@ -11,13 +12,17 @@ import person3 from '../assets/IMG-20240613-WA0028.jpg';
 const NewsArticle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false); // Add loading state
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
 
   const handleBackClick = () => {
-    navigate(-1); // Navigate back to the previous page
+    setLoading(true); // Start loading
+    setTimeout(() => {
+      navigate(-1); 
+    }, 2000); // Simulate a delay of 2 seconds
   };
 
   // Dummy data for demonstration
@@ -74,6 +79,9 @@ const NewsArticle = () => {
 
   if (!article) {
     return <div>Article not found</div>;
+  }
+  if (loading) {
+    return <Loader />; // Show loader if loading
   }
 
   return (

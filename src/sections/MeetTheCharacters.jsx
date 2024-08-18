@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import { useNavigate } from 'react-router-dom';
 import EmblaCarousel from '../components/EmblaCarousel';
+import Loader from '../components/Loader'; // Import your Loader component
 
 // Import images
 import img1 from '../assets/IMG-20240613-WA0004.jpg';
@@ -10,6 +11,7 @@ import img4 from '../assets/IMG-20240613-WA0044.jpg';
 
 const MeetTheCharacters = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const characters = [
     {
@@ -38,6 +40,17 @@ const MeetTheCharacters = () => {
     },
     // Add more characters as needed
   ];
+
+  const handleViewAllCharacters = () => {
+    setLoading(true); // Start loading
+    setTimeout(() => {
+      navigate('/characters'); // Navigate after loading
+    }, 2000); // Simulate a delay of 2 seconds
+  };
+
+  if (loading) {
+    return <Loader />; // Show loader if loading
+  }
 
   const slides = characters.map((character, index) => (
     <div key={index} className="meet-the-characters-slide flex flex-col items-center px-6 mx-auto max-w-7xl xl:flex-row xl:items-stretch gap-x-8 gap-y-10 sm:gap-y-8 lg:px-8">
@@ -84,7 +97,7 @@ const MeetTheCharacters = () => {
       <EmblaCarousel slides={slides} options={{ loop: true, autoplay: true }} />
       <div className="flex justify-center mt-10">
         <button
-          onClick={() => navigate('/characters')}
+          onClick={handleViewAllCharacters}
           className="flex items-center gap-x-2 sm:gap-x-4 py-2 px-3 sm:px-4 text-white font-medium bg-green-800 duration-150 hover:bg-green-700 active:bg-green-900 rounded-lg"
         >
           View All Characters

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../components/Loader'; // Import your Loader component
 
 // Import images
 import back1 from '../assets/back1.jpg';
@@ -87,11 +88,24 @@ const filters = [
 const getRandomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const CharactersPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top when the component mounts
+  }, []); 
+
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const handleBack = () => {
-    navigate(-1); // Go back to the previous page
+    setLoading(true); // Start loading
+    setTimeout(() => {
+      navigate(-1); 
+    }, 2000); // Simulate a delay of 2 seconds
   };
+
+  if (loading) {
+    return <Loader />; // Show loader if loading
+  }
+  
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 relative">
@@ -105,7 +119,7 @@ const CharactersPage = () => {
           </p>
         </section>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {characters.map((character, index) => {
             const transform = getRandomElement(transforms);
             const filter = getRandomElement(filters);
@@ -128,14 +142,24 @@ const CharactersPage = () => {
           })}
         </div>
 
-        <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2">
+        <div className="flex justify-center mt-10">
+        <button
+          onClick={handleBack} 
+          className="flex items-center gap-x-2 sm:gap-x-4 py-2 px-3 sm:px-4 text-white font-medium bg-green-800 duration-150 hover:bg-green-700 active:bg-green-900 rounded-lg"
+        >
+          Back
+          
+        </button>
+        </div>
+
+        {/* <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2">
           <button 
             onClick={handleBack} 
             className="bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition duration-300"
           >
             Back
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
