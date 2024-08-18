@@ -35,7 +35,7 @@ const Steps = () => {
                 <p className="mb-1 text-lg font-bold text-gray-100">
                   Brian Oduor
                 </p>
-                <p className="mb-4 text-xs text-gray-100">Human Resources</p>
+                <p className="mb-4 text-xs text-gray-100">Director</p>
                 <p className="mb-4 text-xs tracking-wide text-gray-400">
                   "Our stories are our truth, they become our audience realities because we tell them candidly...."
                   {/* "Your job as a writer is to take all the personal, unique,
@@ -82,7 +82,7 @@ const Steps = () => {
                 <p className="mb-1 text-lg font-bold text-gray-100">
                   Mariah Karii
                 </p>
-                <p className="mb-4 text-xs text-gray-100">Director</p>
+                <p className="mb-4 text-xs text-gray-100">Human Resources</p>
                 <p className="mb-4 text-xs tracking-wide text-gray-400">
                   "Some are born great, some achieve greatness, and some have
                   greatness thrust upon them."
