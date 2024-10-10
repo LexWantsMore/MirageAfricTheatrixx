@@ -1,7 +1,7 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/" }
-    ],
+    "source": "/^[^.]+$|\\.(?!(css|gif|ico|json|jpg|js|png|txt|svg|woff|ttf)$)([^.]+$)/",
+      "destination": "/index.html"
+      ,
     "headers": [
       {
         "source": "/(.*)",
