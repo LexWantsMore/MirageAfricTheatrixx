@@ -56,7 +56,7 @@ const Checkout = () => {
 
       if (paymentStatus === "SUCCESS") {
         setMessage(
-          "Payment successful! Your ticket has been purchased. Please check your email for ticket information."
+          "Payment Initiation was successful! Please check your email for ticket information."
         );
         setTimeout(() => {
           navigate("/check-email");

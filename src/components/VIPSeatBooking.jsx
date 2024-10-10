@@ -1,13 +1,15 @@
-// VIPSeatBooking Component
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from '../context/CartContext';
 import Alert from "./Alert";
 import "../css/style.css";
+import axios from 'axios';
 
 const VIPSeatBooking = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [seatStatuses, setSeatStatuses] = useState({});
   const [alert, setAlert] = useState({ show: false, message: '', type: '' });
+  const [loading, setLoading] = useState(true); // Loading state
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
   const ticketPrice = 200;
@@ -23,11 +25,36 @@ const VIPSeatBooking = () => {
     localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
   }, [selectedSeats]);
 
-  const handleSeatClick = (index) => {
-    if (selectedSeats.includes(index)) {
-      setSelectedSeats(selectedSeats.filter((seat) => seat !== index));
+  useEffect(() => {
+    async function fetchSeatStatuses() {
+      setLoading(true); // Set loading to true while fetching data
+      try {
+        const response = await axios.get('/api/seats-status');
+        console.log('Fetched seat statuses:', response.data); // Debug log
+        setSeatStatuses(response.data);
+      } catch (error) {
+        console.error('Error fetching seat status:', error);
+        setAlert({
+          show: true,
+          message: 'Failed to load seat statuses. Please try again later.',
+          type: 'error'
+        });
+      } finally {
+        setLoading(false); // Set loading to false after fetching
+      }
+    }
+
+    fetchSeatStatuses();
+  }, []);
+
+  const handleSeatClick = (seatNumber) => {
+    const status = seatStatuses[seatNumber];
+    if (status === 'sold') return; // Prevent selection of sold seats
+
+    if (selectedSeats.includes(seatNumber)) {
+      setSelectedSeats(selectedSeats.filter((seat) => seat !== seatNumber));
     } else {
-      setSelectedSeats([...selectedSeats, index]);
+      setSelectedSeats([...selectedSeats, seatNumber]);
     }
   };
 
@@ -59,10 +86,10 @@ const VIPSeatBooking = () => {
     }
     navigate('/buy/vip', { state: { selectedSeats, total: selectedSeats.length * ticketPrice } });
   };
+
   const handleBackClick = () => {
     navigate(-1); // Navigate back to the previous page
   };
-
 
   const seats = Array(100).fill(null); // Create 100 empty seats
   const seatsPerRow = 10;
@@ -92,25 +119,30 @@ const VIPSeatBooking = () => {
 
       <div className="container">
         <div className="screen"></div>
-        {Array.from({ length: seats.length / seatsPerRow }).map(
-          (_, rowIndex) => (
-            <div className="row" key={rowIndex}>
-              {seats
-                .slice(rowIndex * seatsPerRow, (rowIndex + 1) * seatsPerRow)
-                .map((_, seatIndex) => {
-                  const seatNumber = rowIndex * seatsPerRow + seatIndex + 1;
-                  const isSelected = selectedSeats.includes(seatNumber);
-                  const seatClass = isSelected ? "seat selected" : "seat";
-                  return (
-                    <div
-                      key={seatIndex}
-                      className={seatClass}
-                      onClick={() => handleSeatClick(seatNumber)}
-                      data-seat-number={seatNumber}
-                    ></div>
-                  );
-                })}
-            </div>
+        {loading ? (
+          <div>Loading seat statuses...</div>
+        ) : (
+          Array.from({ length: seats.length / seatsPerRow }).map(
+            (_, rowIndex) => (
+              <div className="row" key={rowIndex}>
+                {seats
+                  .slice(rowIndex * seatsPerRow, (rowIndex + 1) * seatsPerRow)
+                  .map((_, seatIndex) => {
+                    const seatNumber = rowIndex * seatsPerRow + seatIndex + 1;
+                    const status = seatStatuses[seatNumber];
+                    const isSelected = selectedSeats.includes(seatNumber);
+                    const seatClass = status === 'sold' ? 'seat sold' : isSelected ? 'seat selected' : 'seat';
+                    return (
+                      <div
+                        key={seatIndex}
+                        className={seatClass}
+                        onClick={() => handleSeatClick(seatNumber)}
+                        data-seat-number={seatNumber}
+                      ></div>
+                    );
+                  })}
+              </div>
+            )
           )
         )}
       </div>

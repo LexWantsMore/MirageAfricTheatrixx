@@ -23,18 +23,22 @@ const BuyTicket = () => {
   const [loadingCart, setLoadingCart] = useState(false);
   const [quantity, setQuantity] = useState(initialQuantity);
   const { addToCart } = useContext(CartContext);
-  const ticketPrice = type === "vip" ? 200 : 100;
+
+  const ticketPrice = type === "vip" ? 200 : 100; // Updated pricing
+  const totalAmount =
+    type === "vip" ? selectedSeats.length * 200 : quantity * 100; // Updated amount calculation
 
   const handlePurchase = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
 
+    // Add the ticket to the cart with seat information (if applicable)
     addToCart({
       type,
       ticketPrice,
       quantity,
-      seats: selectedSeats,
+      seats: selectedSeats, // Include seat information
     });
 
     try {
@@ -42,26 +46,26 @@ const BuyTicket = () => {
         name,
         email,
         phone,
-        amount: total,
+        amount: totalAmount, // Use the updated amount calculation
+        ticketType: type, // Send the ticket type (vip or regular)
+        totalQuantity: quantity, // Send the total quantity of tickets
+        seats: type === "vip" ? selectedSeats : [], // Send seat numbers only for VIP tickets
       });
 
       console.log(response.data);
 
-      const paymentStatus = await waitForPaymentConfirmation(
-        response.data.transactionId
-      );
-
-      if (paymentStatus === "SUCCESS") {
+      if (response.data.status) {
+        // If the payment initiation is successful, wait for payment confirmation via the backend
         setMessage(
-          "Payment successful! Your ticket has been purchased. Please check your email for ticket information."
+          "Payment initiation was successful! Please complete the payment via MPESA."
         );
+
+        // Here you could navigate to a waiting page or simply show the message until the callback is received
         setTimeout(() => {
-          navigate("/check-email");
-        }, 3000);
-      } else if (paymentStatus === "CANCELED") {
-        setMessage("Payment was canceled. Please try again.");
+          navigate("/check-email"); // Assuming the callback triggers an email with ticket details
+        }, 10000);
       } else {
-        setMessage("Payment failed! Please try again.");
+        setMessage("Payment initiation failed! Please try again.");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -71,38 +75,18 @@ const BuyTicket = () => {
     }
   };
 
-  const waitForPaymentConfirmation = async (checkoutRequestID) => {
-    let status = "pending";
-    while (status === "pending") {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/payment-status/${checkoutRequestID}`
-        );
-        status = response.data.status;
-
-        if (status === "SUCCESS") {
-          return "SUCCESS";
-        } else if (status === "CANCELED") {
-          return "CANCELED";
-        } else if (status === "FAILED") {
-          return "FAILED";
-        }
-      } catch (error) {
-        console.error("Error checking payment status:", error);
-        break;
-      }
-      await new Promise((resolve) => setTimeout(resolve, 5000));
-    }
-    return "FAILED";
-  };
-
   const handleAddToBag = () => {
     if (!name || !email || !phone) {
       setMessage("Please fill in all the required fields.");
       return;
     }
     setLoadingCart(true);
-    addToCart({ type, ticketPrice, quantity, seats: selectedSeats });
+    addToCart({
+      type,
+      ticketPrice,
+      quantity,
+      seats: selectedSeats, // Include seat information
+    });
     setTimeout(() => {
       navigate("/cart");
       setLoadingCart(false);
@@ -115,7 +99,7 @@ const BuyTicket = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white-100 p-6">
-       {loading && <Loader />} {/* Show loader while loading */}
+      {loading && <Loader />} {/* Show loader while loading */}
       <div className="flex flex-col md:flex-row font-sans">
         <div className="flex-none p-4 w-full md:w-56 relative mb-4 md:mb-0">
           <img
@@ -134,7 +118,7 @@ const BuyTicket = () => {
               {type === "vip" ? "VIP" : "Regular"} Ticket
             </h1>
             <div className="w-full flex-none mt-2 order-1 text-3xl font-bold text-green-600">
-              Ksh {ticketPrice * quantity}
+              Ksh {totalAmount} {/* Updated total amount display */}
             </div>
             <div className="text-sm font-medium text-slate-400">In stock</div>
           </div>
@@ -226,28 +210,9 @@ const BuyTicket = () => {
                 Back
               </button>
             </div>
-            <button
-              className="flex-none flex items-center justify-center w-9 h-9 rounded-full text-green-600 bg-violet-50"
-              type="button"
-              aria-label="Like"
-            >
-              <svg
-                width="20"
-                height="20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.656 3.172 10.828a4 4 0 010-5.656z"
-                />
-              </svg>
-            </button>
+            
           </div>
-          {message && (
-            <div className="mt-4 text-center text-red-500">{message}</div>
-          )}
+          <p className="text-green-500 text-center">{message}</p>
         </form>
       </div>
     </div>
