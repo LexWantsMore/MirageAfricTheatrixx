@@ -1,5 +1,26 @@
 {
     "rewrites": [
-        {"source": "/(.*)", "destination":"/" }
+      { "source": "/(.*)", "destination": "/" }
+    ],
+    "headers": [
+      {
+        "source": "/(.*)",
+        "headers": [
+          {
+            "key": "Permissions-Policy",
+            "value": "geolocation=(self), microphone=()" 
+          }
+        ]
+      },
+      {
+        "source": "/assets/site.webmanifest",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/manifest+json"
+          }
+        ]
+      }
     ]
-}
+  }
+  
