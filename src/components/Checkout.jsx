@@ -79,7 +79,7 @@ const Checkout = () => {
     while (status === "pending") {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/payment-status/${checkoutRequestID}`
+          `https://ticket-purchasing-backend.vercel.app/api/payment-status/${checkoutRequestID}`
         );
         status = response.data.status;
 
