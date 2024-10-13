@@ -40,37 +40,38 @@ const Checkout = () => {
     const totalAmount = calculateTotal();
 
     try {
+      // Send the checkout details to the backend
       const response = await axios.post("https://ticket-purchasing-backend.vercel.app/api/stkpush", {
         name,
         email,
         phone,
-        amount: totalAmount, // Use the updated amount calculation
-        ticketType: type, // Send the ticket type (VIP or regular)
-        totalQuantity: quantity, // Send the total quantity of tickets
-        seats: type === "vip" ? selectedSeats : [], // Send seat numbers only for VIP tickets
+        amount: totalAmount, // The total amount for the transaction
+        ticketType: type, // Ticket type ('vip' or 'regular')
+        totalQuantity: quantity, // Total quantity of tickets
+        seats: type === "vip" ? selectedSeats : [], // Only send seats if ticketType is 'vip'
       });
-    
+
       console.log(response.data);
-    
+
+      // Handle success case
       if (response.data.status) {
-        // If the payment initiation is successful, wait for payment confirmation via the backend
-        setMessage(
-          "Payment initiation was successful! Please complete the payment via MPESA."
-        );
-    
-        // Optionally, navigate to a waiting page
+        setMessage("Payment initiation was successful! Please complete the payment via MPESA.");
+
+        // Redirect to a different page after a short delay
         setTimeout(() => {
-          navigate("/check-email"); // Assuming the callback triggers an email with ticket details
+          navigate("/check-email"); // Redirect user to check email or payment confirmation page
         }, 10000);
       } else {
+        // Backend responded with an error
         setMessage("Payment initiation failed! Please try again.");
       }
     } catch (error) {
+      // Handle error case
       console.error("Error:", error);
       setMessage("Payment initiation failed! Please try again.");
     } finally {
       setLoading(false);
-    }    
+    }
   };
 
   const waitForPaymentConfirmation = async (checkoutRequestID) => {
