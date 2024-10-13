@@ -23,6 +23,7 @@ const Checkout = () => {
     }
   }, [cartItems, navigate]);
 
+  // Function to calculate total price
   const calculateTotal = () => {
     return cartItems.reduce((acc, item) => {
       return (
@@ -33,40 +34,43 @@ const Checkout = () => {
     }, 0);
   };
 
+  // Purchase handler function
   const handlePurchase = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
     const totalAmount = calculateTotal();
 
+    // Send the purchase request to the backend
     try {
-      // Send the checkout details to the backend
       const response = await axios.post("https://ticket-purchasing-backend.vercel.app/api/stkpush", {
         name,
         email,
         phone,
-        amount: totalAmount, // The total amount for the transaction
-        ticketType: type, // Ticket type ('vip' or 'regular')
-        totalQuantity: quantity, // Total quantity of tickets
-        seats: type === "vip" ? selectedSeats : [], // Only send seats if ticketType is 'vip'
+        amount: totalAmount,
+        cartItems, // Send the entire cartItems array to handle in the backend
       });
 
       console.log(response.data);
 
-      // Handle success case
-      if (response.data.status) {
-        setMessage("Payment initiation was successful! Please complete the payment via MPESA.");
+      // Wait for payment confirmation
+      const paymentStatus = await waitForPaymentConfirmation(
+        response.data.transactionId
+      );
 
-        // Redirect to a different page after a short delay
+      if (paymentStatus === "SUCCESS") {
+        setMessage(
+          "Payment Initiation was successful! Please check your email for ticket information."
+        );
         setTimeout(() => {
-          navigate("/check-email"); // Redirect user to check email or payment confirmation page
-        }, 10000);
+          navigate("/check-email");
+        }, 3000);
+      } else if (paymentStatus === "CANCELED") {
+        setMessage("Payment was canceled. Please try again.");
       } else {
-        // Backend responded with an error
-        setMessage("Payment initiation failed! Please try again.");
+        setMessage("Payment failed! Please try again.");
       }
     } catch (error) {
-      // Handle error case
       console.error("Error:", error);
       setMessage("Payment initiation failed! Please try again.");
     } finally {
@@ -74,6 +78,7 @@ const Checkout = () => {
     }
   };
 
+  // Polling function for payment confirmation
   const waitForPaymentConfirmation = async (checkoutRequestID) => {
     let status = "pending";
     while (status === "pending") {
@@ -101,6 +106,7 @@ const Checkout = () => {
     return "FAILED";
   };
 
+  // Feature descriptions for ticket types
   const regularFeatures = [
     "Access to all areas",
     "Complimentary snacks",
@@ -226,44 +232,36 @@ const Checkout = () => {
           <div className="relative">
             <ul className="space-y-5">
               {cartItems.map((item, index) => (
-                <li key={index} className="flex justify-between">
-                  <div className="inline-flex">
+                <li
+                  key={index}
+                  className="flex items-center justify-between text-white"
+                >
+                  <div className="inline-flex items-center space-x-2">
                     <img
                       src={
                         item.type === "vip"
                           ? vipTicketImage
                           : regularTicketImage
-                      } // Conditional image path
-                      alt={`${item.type} Ticket`}
-                      className="max-h-16"
+                      }
+                      alt={`${item.type} ticket`}
+                      className="h-10 w-10 rounded border-2 border-white"
                     />
-                    <div className="ml-3">
-                      <p className="text-base font-semibold text-white">
-                        {item.type === "vip" ? "VIP" : "Regular"} Ticket
-                      </p>
-                      {item.type === "vip" ? (
-                        <p className="text-sm font-medium text-white text-opacity-80">
-                          Seat Numbers: {item.seats.join(", ")}
-                        </p>
-                      ) : (
-                        <p className="text-sm font-medium text-white text-opacity-80">
-                          Quantity: {item.quantity}
-                        </p>
-                      )}
-                    </div>
+                    <h3 className="text-sm font-bold">
+                      {item.type === "vip" ? "VIP Ticket" : "Regular Ticket"}
+                    </h3>
                   </div>
-                  <p className="text-sm font-semibold text-white">
-                    Ksh{" "}
-                    {item.ticketPrice *
-                      (item.type === "vip" ? item.seats.length : item.quantity)}
+                  <p className="text-sm font-semibold">
+                    {item.type === "vip"
+                      ? `Ksh ${item.ticketPrice} x ${item.seats.length} seats`
+                      : `Ksh ${item.ticketPrice} x ${item.quantity}`}
                   </p>
                 </li>
               ))}
             </ul>
-            <div className="my-5 h-0.5 w-full bg-white bg-opacity-30"></div>
+            <div className="my-4 h-0.5 w-full rounded bg-white opacity-30"></div>
             <div className="space-y-2">
               <p className="flex justify-between text-lg font-bold text-white">
-                <span>Total price:</span>
+                <span>Total amount:</span>
                 <span>Ksh {calculateTotal()}</span>
               </p>
             </div>
