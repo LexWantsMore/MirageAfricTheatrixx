@@ -35,48 +35,51 @@ const Checkout = () => {
   };
 
   // Purchase handler function
-  const handleCheckout = async (e) => {
+  const handlePurchase = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
   
+    // Check required fields before sending
+    if (!name || !email || !phone || cartItems.length === 0) {
+      setMessage("Please fill in all required fields and ensure you have items in the cart.");
+      setLoading(false);
+      return;
+    }
+  
+    // Calculate totalAmount based on cart
+    const totalAmount = calculateTotal();
+  
     try {
-      // Add the ticket to the cart with seat information (if applicable)
-      addToCart({
-        type, // This will be either 'vip' or 'regular'
-        ticketPrice,
-        quantity,
-        seats: selectedSeats, // Include seat information for VIP
-      });
-  
-      // Calculate the total amount based on the cart items
-      const totalAmount = calculateTotal();
-  
-      // Send the data to the backend
       const response = await axios.post("https://ticket-purchasing-backend.vercel.app/api/stkpush", {
         name,
         email,
         phone,
-        amount: totalAmount, // Ensure total amount is correctly calculated
-        ticketType: type, // Send the correct ticket type
-        totalQuantity: quantity, // Send the total quantity of tickets
-        seats: type === "vip" ? selectedSeats : [], // Send seat numbers only for VIP tickets
+        amount: totalAmount,
+        ticketType: cartItems.some(item => item.type === 'vip') ? 'vip' : 'regular', // Determine ticket type
+        totalQuantity: cartItems.reduce((acc, item) => acc + item.quantity, 0), // Sum of all items' quantities
+        seats: cartItems.some(item => item.type === 'vip') ? cartItems.filter(item => item.type === 'vip').map(item => item.seatNumbers) : [], // Only for VIP
       });
   
-      // Handle successful payment initiation
-      if (response.data.status) {
-        setMessage("Payment initiation was successful! Please complete the payment via MPESA.");
-        // Optionally navigate to another page (e.g., email confirmation page)
+      const paymentStatus = await waitForPaymentConfirmation(response.data.transactionId);
+  
+      if (paymentStatus === "SUCCESS") {
+        setMessage("Payment successful! Check your email for ticket information.");
         setTimeout(() => {
           navigate("/check-email");
-        }, 10000); // Delay navigation to give time for the MPESA transaction
+        }, 3000);
+      } else if (paymentStatus === "CANCELED") {
+        setMessage("Payment was canceled. Please try again.");
+      } else {
+        setMessage("Payment failed! Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      if (error.response) {
+        setMessage(`Payment initiation failed: ${error.response.data.error || 'Please check the form data and try again.'}`);
       } else {
         setMessage("Payment initiation failed! Please try again.");
       }
-  
-    } catch (error) {
-      console.error("Error:", error);
-      setMessage("Payment initiation failed! Please try again.");
     } finally {
       setLoading(false);
     }
