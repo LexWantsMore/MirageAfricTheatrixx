@@ -47,20 +47,20 @@ const BuyTicket = () => {
         email,
         phone,
         amount: totalAmount, // Use the updated amount calculation
-        ticketType: type, // Send the ticket type (vip or regular)
+        ticketType: type, // Send the ticket type (VIP or regular)
         totalQuantity: quantity, // Send the total quantity of tickets
         seats: type === "vip" ? selectedSeats : [], // Send seat numbers only for VIP tickets
       });
-
+    
       console.log(response.data);
-
+    
       if (response.data.status) {
         // If the payment initiation is successful, wait for payment confirmation via the backend
         setMessage(
           "Payment initiation was successful! Please complete the payment via MPESA."
         );
-
-        // Here you could navigate to a waiting page or simply show the message until the callback is received
+    
+        // Optionally, navigate to a waiting page
         setTimeout(() => {
           navigate("/check-email"); // Assuming the callback triggers an email with ticket details
         }, 10000);
@@ -73,7 +73,8 @@ const BuyTicket = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }; 
+    
 
   const handleAddToBag = () => {
     if (!name || !email || !phone) {
