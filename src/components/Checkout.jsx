@@ -39,29 +39,32 @@ const Checkout = () => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
+  
+    // Check required fields before sending
+    if (!name || !email || !phone || cartItems.length === 0) {
+      setMessage("Please fill in all required fields and ensure you have items in the cart.");
+      setLoading(false);
+      return;
+    }
+  
+    // Calculate totalAmount based on cart
     const totalAmount = calculateTotal();
-
-    // Send the purchase request to the backend
+  
     try {
       const response = await axios.post("https://ticket-purchasing-backend.vercel.app/api/stkpush", {
         name,
         email,
         phone,
         amount: totalAmount,
-        cartItems, // Send the entire cartItems array to handle in the backend
+        ticketType: cartItems.some(item => item.type === 'vip') ? 'vip' : 'regular', // Determine ticket type
+        totalQuantity: cartItems.reduce((acc, item) => acc + item.quantity, 0), // Sum of all items' quantities
+        seats: cartItems.some(item => item.type === 'vip') ? cartItems.filter(item => item.type === 'vip').map(item => item.seatNumbers) : [], // Only for VIP
       });
-
-      console.log(response.data);
-
-      // Wait for payment confirmation
-      const paymentStatus = await waitForPaymentConfirmation(
-        response.data.transactionId
-      );
-
+  
+      const paymentStatus = await waitForPaymentConfirmation(response.data.transactionId);
+  
       if (paymentStatus === "SUCCESS") {
-        setMessage(
-          "Payment Initiation was successful! Please check your email for ticket information."
-        );
+        setMessage("Payment successful! Check your email for ticket information.");
         setTimeout(() => {
           navigate("/check-email");
         }, 3000);
@@ -72,12 +75,16 @@ const Checkout = () => {
       }
     } catch (error) {
       console.error("Error:", error);
-      setMessage("Payment initiation failed! Please try again.");
+      if (error.response) {
+        setMessage(`Payment initiation failed: ${error.response.data.error || 'Please check the form data and try again.'}`);
+      } else {
+        setMessage("Payment initiation failed! Please try again.");
+      }
     } finally {
       setLoading(false);
     }
   };
-
+  
   // Polling function for payment confirmation
   const waitForPaymentConfirmation = async (checkoutRequestID) => {
     let status = "pending";
