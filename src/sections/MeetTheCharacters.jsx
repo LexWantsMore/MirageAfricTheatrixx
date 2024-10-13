@@ -91,7 +91,7 @@ const MeetTheCharacters = () => {
 
   return (
     <div className="meet-the-characters pt-24 pb-16 sm:pb-24 sm:pt-32 xl:pb-32 bg-gray-20">
-      <h2 className="meet-the-characters text-center text-4xl text-gray-800 font-extrabold mx-auto md:text-5xl ">
+      <h2 className="meet-the-characters text-5xl text-gray-800 font-extrabold mx-auto md:text-5xl mb-12">
         Meet The Characters
       </h2>
       <EmblaCarousel slides={slides} options={{ loop: true, autoplay: true }} />
