@@ -40,7 +40,7 @@ const Checkout = () => {
     const totalAmount = calculateTotal();
 
     try {
-      const response = await axios.post("https://ticket-purchasing-backend.vercel.app/ap/stkpush", {
+      const response = await axios.post("https://ticket-purchasing-backend.vercel.app/api/stkpush", {
         name,
         email,
         phone,
