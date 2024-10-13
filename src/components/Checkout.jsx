@@ -44,34 +44,33 @@ const Checkout = () => {
         name,
         email,
         phone,
-        amount: totalAmount,
+        amount: totalAmount, // Use the updated amount calculation
+        ticketType: type, // Send the ticket type (VIP or regular)
+        totalQuantity: quantity, // Send the total quantity of tickets
+        seats: type === "vip" ? selectedSeats : [], // Send seat numbers only for VIP tickets
       });
-
+    
       console.log(response.data);
-
-      // Wait for payment confirmation
-      const paymentStatus = await waitForPaymentConfirmation(
-        response.data.transactionId
-      );
-
-      if (paymentStatus === "SUCCESS") {
+    
+      if (response.data.status) {
+        // If the payment initiation is successful, wait for payment confirmation via the backend
         setMessage(
-          "Payment Initiation was successful! Please check your email for ticket information."
+          "Payment initiation was successful! Please complete the payment via MPESA."
         );
+    
+        // Optionally, navigate to a waiting page
         setTimeout(() => {
-          navigate("/check-email");
-        }, 3000);
-      } else if (paymentStatus === "CANCELED") {
-        setMessage("Payment was canceled. Please try again.");
+          navigate("/check-email"); // Assuming the callback triggers an email with ticket details
+        }, 10000);
       } else {
-        setMessage("Payment failed! Please try again.");
+        setMessage("Payment initiation failed! Please try again.");
       }
     } catch (error) {
       console.error("Error:", error);
       setMessage("Payment initiation failed! Please try again.");
     } finally {
       setLoading(false);
-    }
+    }    
   };
 
   const waitForPaymentConfirmation = async (checkoutRequestID) => {
