@@ -96,7 +96,7 @@ const MeetTheCharacters = () => {
         Meet The Characters
       </h2>
       <p className="news__subtitle text-gray-800 font-extrabold mx-auto md:text-5xl mb-12">
-            Catch up with the best actors in these streets
+            Catch up with our actors.
           </p>
       <EmblaCarousel slides={slides} options={{ loop: true, autoplay: true }} />
       <div className="flex justify-center mt-10">
