@@ -21,7 +21,7 @@ const News = () => {
   }
 
   return (
-    <section className="news mt-[80px] xl:mt-[150px] relative z-20">
+    <section className="news mt-[20px] xl:mt-[150px] relative z-20">
       <div className="container mx-auto px-0">
         <div className="max-w-[810px] mx-auto text-center mb-[52px]">
           <h2 className="news__title text-5xl text-gray-800 font-extrabold mx-auto md:text-5xl mb-12">
