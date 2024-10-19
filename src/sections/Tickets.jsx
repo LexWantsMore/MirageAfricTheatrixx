@@ -52,10 +52,10 @@ const Tickets = () => {
   };
 
   return (
-    <section className="tickets reveal mt-20  relative z-20 w-full flex justify-center text-center">
+    <section className="tickets reveal mt-20 relative z-20 w-full flex justify-center text-center">
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8 flex flex-col items-center">
         <div className="relative max-w-xl mx-auto sm:text-center">
-          <h2 className="tickets text-5xl text-gray-800 font-extrabold mx-auto md:text-5xl">
+          <h2 className="tickets text-5xl text-gray-800 font-extrabold mx-auto sm:text-4xl">
             Tickets
           </h2>
           <div className="mt-3 max-w-xl mx-auto">
@@ -64,11 +64,13 @@ const Tickets = () => {
             </p>
           </div>
         </div>
-        <div className="tickets mt-16 space-y-6 grid gap-6 sm:grid sm:grid-cols-2 sm:space-y-0 lg:grid-cols-2 justify-center">
+
+        {/* Responsive grid layout for ticket plans */}
+        <div className="tickets mt-16 space-y-8 grid gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-2 sm:space-y-0">
           {plans.map((plan, idx) => (
             <div
               key={idx}
-              className="relative flex-1 flex items-stretch flex-col p-8 rounded-xl border-2 ticket-card w-96"
+              className="relative flex-1 flex items-stretch flex-col p-8 rounded-xl border-2 ticket-card sm:mt-0 w-full lg:w-96"
             >
               <div>
                 <span className="text-green-600 font-medium">{plan.name}</span>
@@ -96,6 +98,8 @@ const Tickets = () => {
                   </li>
                 ))}
               </ul>
+
+              {/* Responsive button for ticket selection */}
               <div className="flex-1 flex items-end">
                 {plan.name === "VIP Ticket" ? (
                   loadingVIP ? (
@@ -105,7 +109,7 @@ const Tickets = () => {
                   ) : (
                     <button
                       onClick={handleVIPClick}
-                      className="px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-green-600 hover:bg-green-500 active:bg-green-700"
+                      className="px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-green-600 hover:bg-green-500 active:bg-green-700 sm:px-5 sm:py-4"
                     >
                       Buy {plan.name}
                     </button>
@@ -121,7 +125,7 @@ const Tickets = () => {
                         `/buy/${plan.name.toLowerCase().replace(" ", "-")}`
                       )
                     }
-                    className="px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-green-600 hover:bg-green-500 active:bg-green-700"
+                    className="px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-green-600 hover:bg-green-500 active:bg-green-700 sm:px-5 sm:py-4"
                   >
                     Buy {plan.name}
                   </button>

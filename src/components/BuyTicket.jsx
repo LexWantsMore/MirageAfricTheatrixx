@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { CartContext } from "../context/CartContext";
@@ -23,6 +23,12 @@ const BuyTicket = () => {
   const [loadingCart, setLoadingCart] = useState(false);
   const [quantity, setQuantity] = useState(initialQuantity);
   const { addToCart } = useContext(CartContext);
+  const { id } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
 
   const ticketPrice = type === "vip" ? 200 : 100; // Updated pricing
   const totalAmount =
