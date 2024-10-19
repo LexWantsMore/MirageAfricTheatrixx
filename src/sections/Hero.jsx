@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import Typed from "typed.js";
-import heroBg from "../assets/src/pixelcut-export.jpeg"; // Update the path as needed
+import heroBg from "../assets/pixelcut-export.jpeg"; // Update the path as needed
 
 const Hero = () => {
   const typedJSRef = useRef(null);
